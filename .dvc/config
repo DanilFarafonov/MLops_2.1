@@ -1,0 +1,4 @@
+[core]
+    remote = data_srv_remote
+['remote "data_srv_remote"']
+    url = ssh://danil@data_srv
