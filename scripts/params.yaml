@@ -1,0 +1,4 @@
+model:
+  batch_size: 200
+  epochs: 5
+  verbose: 1

@@ -27,4 +27,5 @@ stages:
       - data/y_test_raw.csv
       - scripts/model_testing.py
     metrics:
-      - results.json
+      - results.json:
+          cache: false
