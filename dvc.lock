@@ -1,0 +1,83 @@
+schema: '2.0'
+stages:
+  data-normalization:
+    cmd: python3 scripts/data_normalization.py
+    deps:
+    - path: data/x_test_raw.csv
+      hash: md5
+      md5: e6c33687e636d371da7988bbb83dabb0
+      size: 22179097
+    - path: data/x_train_raw.csv
+      hash: md5
+      md5: 5db7640a737c9bd4f2ff259aa3760026
+      size: 132891899
+    - path: data/y_test_raw.csv
+      hash: md5
+      md5: 3fb01f13753819098488981bbcc1d228
+      size: 20002
+    - path: data/y_train_raw.csv
+      hash: md5
+      md5: 8b037e3027267bf3cd6aa5a9d5f499a3
+      size: 120002
+    - path: scripts/data_normalization.py
+      hash: md5
+      md5: 3183d7cdbae591ddb33c9d4797712ad0
+      size: 1209
+    outs:
+    - path: data/x_test.csv
+      hash: md5
+      md5: c4fab777f420015c32424017020d020f
+      size: 89050381
+    - path: data/x_train.csv
+      hash: md5
+      md5: 511137b80edf7b3033c414855694e699
+      size: 532789429
+    - path: data/y_test.csv
+      hash: md5
+      md5: 91e013cce565759033c0b95f07f6978d
+      size: 400020
+    - path: data/y_train.csv
+      hash: md5
+      md5: 74d016c9ee057fc10332bc25000223a3
+      size: 2400020
+  model-creation:
+    cmd: python3 scripts/model_creation.py
+    deps:
+    - path: data/x_train_raw.csv
+      hash: md5
+      md5: 5db7640a737c9bd4f2ff259aa3760026
+      size: 132891899
+    - path: data/y_train_raw.csv
+      hash: md5
+      md5: 8b037e3027267bf3cd6aa5a9d5f499a3
+      size: 120002
+    - path: scripts/model_creation.py
+      hash: md5
+      md5: 9e35febfba33ab6b72063395a4bcc94d
+      size: 521
+    outs:
+    - path: model
+      hash: md5
+      md5: d8dc01935f3a5b3071994b06a8f888ee.dir
+      size: 7713374
+      nfiles: 5
+  model-testing:
+    cmd: python3 scripts/model_testing.py
+    deps:
+    - path: data/x_test_raw.csv
+      hash: md5
+      md5: e6c33687e636d371da7988bbb83dabb0
+      size: 22179097
+    - path: data/y_test_raw.csv
+      hash: md5
+      md5: 3fb01f13753819098488981bbcc1d228
+      size: 20002
+    - path: scripts/model_testing.py
+      hash: md5
+      md5: 7c84c76541d9280cac3e4381022caf28
+      size: 409
+    outs:
+    - path: results.json
+      hash: md5
+      md5: 03915a1b90f7eb2ad37e885e0a3e2850
+      size: 61

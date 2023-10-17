@@ -1,0 +1,30 @@
+stages:
+  data-normalization:
+    cmd: python3 scripts/data_normalization.py
+    deps:
+      - data/x_test_raw.csv
+      - data/y_test_raw.csv
+      - data/x_train_raw.csv
+      - data/y_train_raw.csv
+      - scripts/data_normalization.py
+    outs:
+      - data/x_test.csv
+      - data/y_test.csv
+      - data/x_train.csv
+      - data/y_train.csv
+  model-creation:
+    cmd: python3 scripts/model_creation.py
+    deps:
+      - data/x_train_raw.csv
+      - data/y_train_raw.csv
+      - scripts/model_creation.py
+    outs:
+      - model
+  model-testing:
+    cmd: python3 scripts/model_testing.py
+    deps:
+      - data/x_test_raw.csv
+      - data/y_test_raw.csv
+      - scripts/model_testing.py
+    metrics:
+      - results.json
